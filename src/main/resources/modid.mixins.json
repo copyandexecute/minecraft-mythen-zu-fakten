@@ -4,9 +4,20 @@
   "package": "net.fabricmc.example.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "block.SaplingBlockMixin",
+    "block.SugarCaneBlockMixin",
+    "entity.mob.AllayEntityMixin",
+    "entity.mob.FoxEntityInvoker",
+    "entity.mob.FoxEntityMixin",
+    "entity.mob.LivingEntityMixin",
+    "entity.mob.VexEntityMixin",
+    "item.ItemStackMixin"
   ],
   "client": [
-    "ExampleMixin"
+    "KeyboardMixin",
+    "render.entity.AllayEntityRendererMixin",
+    "render.entity.PlayerEntityRendererMixin",
+    "render.entity.feature.ArmorFeatureRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

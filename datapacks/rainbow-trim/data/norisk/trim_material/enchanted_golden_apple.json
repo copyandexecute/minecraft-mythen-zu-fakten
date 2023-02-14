@@ -1,0 +1,10 @@
+{
+  "asset_name": "enchanted_golden_apple",
+  "description": {
+    "color": "#FFD700",
+    "translate": "trim_material.minecraft.wheat",
+    "fallback": "Rainbow"
+  },
+  "ingredient": "minecraft:enchanted_golden_apple",
+  "item_model_index": 0.6
+}
