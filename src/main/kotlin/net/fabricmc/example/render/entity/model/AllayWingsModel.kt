@@ -1,8 +1,5 @@
 package net.fabricmc.example.render.entity.model
 
-import java.util.function.Function
-import net.fabricmc.api.EnvType
-import net.fabricmc.api.Environment
 import net.minecraft.client.model.*
 import net.minecraft.client.render.RenderLayer
 import net.minecraft.client.render.VertexConsumer

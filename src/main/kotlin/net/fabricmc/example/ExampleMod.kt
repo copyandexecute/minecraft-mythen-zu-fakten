@@ -1,6 +1,5 @@
 package net.fabricmc.example
 
-import net.fabricmc.example.block.ChiseledBookshelfBlockModifier
 import net.fabricmc.example.entity.ClientPlayerEntityModifier.sendCommand
 import net.fabricmc.example.entity.FoxEntityModifier.tryGodMlg
 import net.fabricmc.example.events.KeyCallback
@@ -21,8 +20,6 @@ fun init() {
             }
         }
     }
-
-    ChiseledBookshelfBlockModifier.init()
 
     KeyCallback.EVENT.register(KeyCallback { key, action, mods ->
         if (key.code == InputUtil.GLFW_KEY_RIGHT_SHIFT && action == 1) {

@@ -1,6 +1,5 @@
 package net.fabricmc.example.entity
 
-import net.fabricmc.example.entity.FoxEntityModifier.tryGodMlg
 import net.fabricmc.example.mixin.entity.mob.FoxEntityInvoker
 import net.minecraft.entity.EquipmentSlot
 import net.minecraft.entity.passive.FoxEntity

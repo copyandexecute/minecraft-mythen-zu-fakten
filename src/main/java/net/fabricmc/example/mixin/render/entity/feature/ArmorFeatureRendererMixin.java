@@ -1,8 +1,6 @@
 package net.fabricmc.example.mixin.render.entity.feature;
 
-import net.fabricmc.example.render.CustomRenderLayers;
 import net.minecraft.client.render.OverlayTexture;
-import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
