@@ -17,6 +17,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class ChiseledBookshelfBlockMixin {
     @Inject(method = "tryRemoveBook", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/entity/ChiseledBookshelfBlockEntity;removeStack(II)Lnet/minecraft/item/ItemStack;"), cancellable = true)
     private static void tryRemoveBookInjection(World world, BlockPos pos, PlayerEntity player, ChiseledBookshelfBlockEntity blockEntity, int slot, CallbackInfo ci) {
-        ChiseledBookshelfBlockModifier.INSTANCE.handleCurseOfBindingBook(blockEntity,slot,ci);
+        ChiseledBookshelfBlockModifier.INSTANCE.handleCurseOfBindingBook(player,blockEntity,slot,ci);
     }
 }

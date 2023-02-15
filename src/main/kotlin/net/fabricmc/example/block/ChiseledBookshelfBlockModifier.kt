@@ -1,5 +1,6 @@
 package net.fabricmc.example.block
 
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.minecraft.block.entity.ChiseledBookshelfBlockEntity
 import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.entity.player.PlayerEntity
@@ -14,5 +15,11 @@ object ChiseledBookshelfBlockModifier {
             playerEntity.playSound(SoundEvents.ENTITY_ELDER_GUARDIAN_CURSE,0.5f,0.3f)
             callBack.cancel()
         }
+    }
+
+    fun init() {
+        PlayerBlockBreakEvents.AFTER.register(PlayerBlockBreakEvents.After { world, player, pos, state, blockEntity ->
+            blockEntity.
+        })
     }
 }
