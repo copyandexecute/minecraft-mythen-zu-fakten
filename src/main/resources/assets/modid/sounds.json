@@ -1,0 +1,28 @@
+{
+  "bastighg": {
+    "sounds": [
+      "modid:bastighg"
+    ]
+  },
+  "letshugo": {
+    "sounds": [
+      "modid:letshugo"
+    ]
+  },
+  "montanablack": {
+    "sounds": [
+      "modid:montanablack"
+    ]
+  },
+  "wichtiger": {
+    "sounds": [
+      "modid:wichtiger"
+    ]
+  },
+  "trymacs": {
+    "sounds": [
+      "modid:trymacs"
+    ]
+  }
+}
+
