@@ -10,6 +10,8 @@
     "block.SaplingBlockMixin",
     "block.SugarCaneBlockMixin",
     "block.entity.SkullBlockEntityMixin",
+    "entity.boss.dragon.EnderDragonEntityMixin",
+    "entity.boss.dragon.phase.DyingPhaseMixin",
     "entity.mob.AllayEntityMixin",
     "entity.mob.FoxEntityInvoker",
     "entity.mob.FoxEntityMixin",
