@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "block.ChiseledBookshelfBlockMixin",
+    "block.MudBlockMixin",
     "block.NoteBlockMixin",
     "block.SaplingBlockMixin",
     "block.SugarCaneBlockMixin",
