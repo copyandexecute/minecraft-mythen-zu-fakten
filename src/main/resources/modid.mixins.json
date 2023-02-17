@@ -17,7 +17,8 @@
     "entity.mob.VexEntityMixin",
     "entity.projectile.TridentEntityMixin",
     "item.GoatHornItemMixin",
-    "item.ItemStackMixin"
+    "item.ItemStackMixin",
+    "render.entity.EnderDragonEntityRendererMixin"
   ],
   "client": [
     "KeyboardMixin",
