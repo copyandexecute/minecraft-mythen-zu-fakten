@@ -1,5 +1,6 @@
 plugins {
 	kotlin("jvm") version "1.8.10"
+	kotlin("plugin.serialization") version "1.8.10"
 	id("fabric-loom")
 	`maven-publish`
 	java
@@ -24,6 +25,7 @@ dependencies {
 	modImplementation("net.fabricmc.fabric-api:fabric-api:${property("fabric_api_version")}")
 	modImplementation("net.silkmc:silk-core:1.9.5")
 	modImplementation("net.silkmc:silk-commands:1.9.5")
+	modImplementation("net.silkmc:silk-network:1.9.5")
 }
 
 loom {

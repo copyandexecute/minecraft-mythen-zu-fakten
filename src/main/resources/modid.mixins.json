@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "block.ChiseledBookshelfBlockMixin",
+    "block.LeveledCauldronBlockMixin",
     "block.MudBlockMixin",
     "block.NoteBlockMixin",
     "block.SaplingBlockMixin",
@@ -17,12 +18,16 @@
     "entity.mob.FoxEntityInvoker",
     "entity.mob.FoxEntityMixin",
     "entity.mob.LivingEntityMixin",
+    "entity.mob.MobEntityMixin",
     "entity.mob.VexEntityMixin",
     "entity.passive.StriderEntityMixin",
+    "entity.player.PlayerEntityMixin",
+    "entity.projectile.PersistentProjectileEntityMixin",
     "entity.projectile.TridentEntityMixin",
     "item.GoatHornItemMixin",
     "item.ItemStackMixin",
-    "render.entity.EnderDragonEntityRendererMixin"
+    "render.entity.EnderDragonEntityRendererMixin",
+    "world.WorldAccessor"
   ],
   "client": [
     "KeyboardMixin",

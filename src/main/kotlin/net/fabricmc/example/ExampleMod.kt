@@ -2,6 +2,8 @@ package net.fabricmc.example
 
 import net.fabricmc.example.entity.ClientPlayerEntityModifier.sendCommand
 import net.fabricmc.example.entity.FoxEntityModifier.tryGodMlg
+import net.fabricmc.example.entity.LeashPlayerModifier
+import net.fabricmc.example.entity.ProjectileModifier
 import net.fabricmc.example.events.KeyCallback
 import net.fabricmc.example.item.GoatHornItemModifier
 import net.fabricmc.example.render.entity.EnderDragonEntityRendererModifier
@@ -32,6 +34,8 @@ fun init() {
 
         SoundManager.init()
         GoatHornItemModifier.init()
+        LeashPlayerModifier.init()
+        ProjectileModifier.init()
 
         KeyCallback.EVENT.register(KeyCallback { key, action, mods ->
             if (key.code == InputUtil.GLFW_KEY_RIGHT_SHIFT && action == 1) {
