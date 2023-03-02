@@ -1,12 +1,12 @@
 package net.fabricmc.example.mixin.entity.player;
 
 import net.fabricmc.example.entity.LeashPlayer;
+import net.fabricmc.example.entity.RocketSpammer;
 import net.fabricmc.example.mixin.world.WorldAccessor;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
@@ -22,11 +22,12 @@ import java.util.Set;
 import java.util.UUID;
 
 @Mixin(PlayerEntity.class)
-public abstract class PlayerEntityMixin extends LivingEntity implements LeashPlayer {
+public abstract class PlayerEntityMixin extends LivingEntity implements LeashPlayer, RocketSpammer {
     @Shadow
     public abstract ItemStack eatFood(World world, ItemStack stack);
 
     private final Set<UUID> entities = new HashSet<>();
+    private final Set<Long> usedRockets = new HashSet<>();
 
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
@@ -58,5 +59,16 @@ public abstract class PlayerEntityMixin extends LivingEntity implements LeashPla
         } else {
             entities.remove(uuid);
         }
+    }
+
+    @Override
+    public void addRocket() {
+        usedRockets.add(System.currentTimeMillis() + 500L);
+    }
+
+    @Override
+    public int getUsedRockets() {
+        usedRockets.removeIf(value -> System.currentTimeMillis() > value);
+        return usedRockets.size();
     }
 }
