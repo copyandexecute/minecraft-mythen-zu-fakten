@@ -1,5 +1,6 @@
 package net.fabricmc.example
 
+import net.fabricmc.example.command.CommandManager
 import net.fabricmc.example.entity.ClientPlayerEntityModifier.sendCommand
 import net.fabricmc.example.entity.FoxEntityModifier.tryGodMlg
 import net.fabricmc.example.entity.LeashPlayerModifier
@@ -36,6 +37,7 @@ fun init() {
         GoatHornItemModifier.init()
         LeashPlayerModifier.init()
         ProjectileModifier.init()
+        CommandManager.init()
 
         KeyCallback.EVENT.register(KeyCallback { key, action, mods ->
             if (key.code == InputUtil.GLFW_KEY_RIGHT_SHIFT && action == 1) {

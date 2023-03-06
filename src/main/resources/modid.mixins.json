@@ -9,7 +9,9 @@
     "block.MudBlockMixin",
     "block.NoteBlockMixin",
     "block.SaplingBlockMixin",
+    "block.SpongeBlockMixin",
     "block.SugarCaneBlockMixin",
+    "block.entity.LootableContainerBlockEntityMixin",
     "block.entity.SkullBlockEntityMixin",
     "entity.EntityMixin",
     "entity.boss.dragon.EnderDragonEntityMixin",
@@ -28,12 +30,14 @@
     "item.FireworkRocketItemMixin",
     "item.GoatHornItemMixin",
     "item.ItemStackMixin",
+    "loot.LootPoolMixin",
     "render.entity.EnderDragonEntityRendererMixin",
     "world.WorldAccessor"
   ],
   "client": [
     "KeyboardMixin",
     "render.entity.AllayEntityRendererMixin",
+    "render.entity.LivingEntityRendererMixin",
     "render.entity.PlayerEntityRendererMixin",
     "render.entity.feature.ArmorFeatureRendererMixin"
   ],
