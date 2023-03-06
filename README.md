@@ -6,3 +6,6 @@
 - Glück gibt besseren Kistenloot
 - Dinnerbone nametag umdrehen
 - Sponge mit efficieny macht mehr weg
+- Dinnerbone umgedreht im Bett
+- Warden Blind
+- _jeb auf schildern
