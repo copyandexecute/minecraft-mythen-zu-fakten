@@ -7,7 +7,7 @@ import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.Items
 import net.silkmc.silk.core.text.literal
 
-object DinnerboneMyth : Myth("Dinnerbone") {
+object DinnerboneHeadMyth : Myth("DinnerboneHead") {
     fun test(livingEntity: LivingEntity): Boolean {
         if (!isActive) return false
         if (livingEntity !is PlayerEntity) return false
