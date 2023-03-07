@@ -9,6 +9,7 @@ object CommandManager {
         command("myth") {
             myths.forEach {
                 literal(it.name.lowercase()) {
+                    it.appendCommand(this)
                     runs {
                         it.toggle()
                         this.source.sendMessage(literalText("${it.name} is now ${it.isActive}"))
