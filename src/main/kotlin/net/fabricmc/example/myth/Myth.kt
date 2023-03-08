@@ -5,6 +5,11 @@ import net.silkmc.silk.commands.LiteralCommandBuilder
 
 abstract class Myth(val name: String) {
     var isActive: Boolean = false
+
+    constructor(name: String, isActive: Boolean) : this(name) {
+        this.isActive = isActive
+    }
+
     fun toggle() {
         isActive = !isActive
     }

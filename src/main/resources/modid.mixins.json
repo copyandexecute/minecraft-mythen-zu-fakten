@@ -4,6 +4,7 @@
   "package": "net.fabricmc.example.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "accessor.AbstractCauldronBlockAccessor",
     "accessor.LeafEntryAccessor",
     "block.ChiseledBookshelfBlockMixin",
     "block.LeveledCauldronBlockMixin",
