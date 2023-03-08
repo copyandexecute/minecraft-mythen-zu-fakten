@@ -1,7 +1,7 @@
 - [ ] Chicken Leash slow falling
 - [ ] Looking in sun = erblinden 
-- [ ] Enderman abschießen
-- [ ] Cauldron MLG 
+- [x] Enderman abschießen
+- [x] Cauldron MLG 
 - [ ] Raketen Boosten Schneller
 - [x] Glück gibt besseren Kistenloot
 - [ ] Dinnerbone nametag umdrehen

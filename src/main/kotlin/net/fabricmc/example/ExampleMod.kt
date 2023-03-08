@@ -4,9 +4,7 @@ import net.fabricmc.example.command.CommandManager
 import net.fabricmc.example.entity.ClientPlayerEntityModifier.sendCommand
 import net.fabricmc.example.entity.FoxEntityModifier.tryGodMlg
 import net.fabricmc.example.entity.LeashPlayerModifier
-import net.fabricmc.example.entity.ProjectileModifier
 import net.fabricmc.example.events.KeyCallback
-import net.fabricmc.example.extensions.toId
 import net.fabricmc.example.extensions.toMcId
 import net.fabricmc.example.item.GoatHornItemModifier
 import net.fabricmc.example.mixin.accessor.GameRendererAccessor
@@ -56,7 +54,6 @@ fun init() {
     SoundManager.init()
     GoatHornItemModifier.init()
     LeashPlayerModifier.init()
-    ProjectileModifier.init()
     CommandManager.init()
 
     KeyCallback.EVENT.register(KeyCallback { key, action, mods ->

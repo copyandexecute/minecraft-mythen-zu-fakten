@@ -1,6 +1,6 @@
 package net.fabricmc.example.mixin.entity.projectile;
 
-import net.fabricmc.example.entity.ProjectileModifier;
+import net.fabricmc.example.myth.myths.EndermanArrowMyth;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
@@ -17,6 +17,6 @@ public abstract class PersistentProjectileEntityMixin extends ProjectileEntity {
 
     @ModifyVariable(method = "onEntityHit", at = @At("STORE"), ordinal = 0)
     private boolean endermanInjection(boolean value) {
-        return !ProjectileModifier.INSTANCE.isActive() && value;
+        return !EndermanArrowMyth.INSTANCE.isActive() && value;
     }
 }

@@ -21,6 +21,7 @@
     "entity.boss.dragon.EnderDragonEntityMixin",
     "entity.boss.dragon.phase.DyingPhaseMixin",
     "entity.mob.AllayEntityMixin",
+    "entity.mob.EndermanEntityMixin",
     "entity.mob.FoxEntityInvoker",
     "entity.mob.FoxEntityMixin",
     "entity.mob.LivingEntityMixin",

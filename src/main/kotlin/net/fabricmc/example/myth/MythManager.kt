@@ -8,5 +8,6 @@ val myths = listOf(
     SpongeMyth,
     LuckMyth,
     JebSignMyth,
-    CauldronMlgMyth
+    CauldronMlgMyth,
+    EndermanArrowMyth,
 )
