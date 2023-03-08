@@ -5,7 +5,7 @@
 - [ ] Raketen Boosten Schneller
 - [x] Glück gibt besseren Kistenloot
 - [ ] Dinnerbone nametag umdrehen
-- [ ] Sponge mit efficieny macht mehr weg
+- [x] Sponge mit efficieny macht mehr weg
 - [ ] Dinnerbone umgedreht im Bett
 - [ ] Warden Blind
 - [x] _jeb auf schildern 
