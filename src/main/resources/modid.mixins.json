@@ -40,6 +40,7 @@
   ],
   "client": [
     "KeyboardMixin",
+    "accessor.GameRendererAccessor",
     "render.block.entity.SignBlockEntityRendererMixin",
     "render.entity.AllayEntityRendererMixin",
     "render.entity.LivingEntityRendererMixin",
