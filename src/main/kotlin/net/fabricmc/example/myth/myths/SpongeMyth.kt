@@ -7,8 +7,8 @@ import net.minecraft.item.ItemStack
 
 object SpongeMyth : Myth("Sponge") {
     fun BetterSponge.apply(original: Int): Int {
-        val modifier = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, fromItemStack)
-        return original + (modifier * (original / 2))
+        val modifier = if (isActive) EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, fromItemStack) else 0
+        return original + (modifier * (original))
     }
 }
 

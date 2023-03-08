@@ -37,6 +37,11 @@ public abstract class SpongeBlockMixin extends Block implements BetterSponge {
 
     @ModifyConstant(method = "absorbWater", constant = @Constant(intValue = 64))
     private int spongeMyth(int value) {
+        return (SpongeMyth.INSTANCE.isActive()) ? 10000 : value;
+    }
+
+    @ModifyConstant(method = "absorbWater", constant = @Constant(intValue = 6))
+    private int spongeMyth2(int value) {
         return SpongeMyth.INSTANCE.apply(this, value);
     }
 }
