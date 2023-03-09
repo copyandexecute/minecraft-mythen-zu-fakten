@@ -4,7 +4,7 @@
 - [x] Cauldron MLG 
 - [ ] Raketen Boosten Schneller
 - [x] Glück gibt besseren Kistenloot
-- [ ] Dinnerbone nametag umdrehen
+- [x] Dinnerbone nametag umdrehen
 - [x] Sponge mit efficieny macht mehr weg
 - [ ] Dinnerbone umgedreht im Bett
 - [ ] Warden Blind
