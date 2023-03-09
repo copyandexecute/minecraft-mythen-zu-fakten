@@ -36,6 +36,7 @@
     "item.GoatHornItemMixin",
     "item.ItemStackMixin",
     "loot.LootPoolMixin",
+    "loot.condition.RandomChanceWithLootConditionMixin",
     "loot.entry.ChoiceMixin",
     "render.entity.EnderDragonEntityRendererMixin",
     "world.WorldAccessor"
