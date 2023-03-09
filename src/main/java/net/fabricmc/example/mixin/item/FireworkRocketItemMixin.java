@@ -1,6 +1,7 @@
 package net.fabricmc.example.mixin.item;
 
 import net.fabricmc.example.entity.RocketSpammer;
+import net.fabricmc.example.myth.myths.FireworkRocketMyth;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FireworkRocketItem;
 import net.minecraft.item.ItemStack;
@@ -16,6 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class FireworkRocketItemMixin {
     @Inject(method = "use", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;isFallFlying()Z", shift = At.Shift.AFTER))
     private void useInjection(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir) {
-        ((RocketSpammer) user).addRocket();
+        if (FireworkRocketMyth.INSTANCE.isActive())
+            ((RocketSpammer) user).addRocket();
     }
 }

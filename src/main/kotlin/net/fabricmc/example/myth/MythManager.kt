@@ -10,4 +10,5 @@ val myths = listOf(
     JebSignMyth,
     CauldronMlgMyth,
     EndermanArrowMyth,
+    FireworkRocketMyth,
 )

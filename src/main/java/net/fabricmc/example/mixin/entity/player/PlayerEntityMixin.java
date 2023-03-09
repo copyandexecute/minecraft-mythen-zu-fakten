@@ -63,7 +63,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements LeashPla
 
     @Override
     public void addRocket() {
-        usedRockets.add(System.currentTimeMillis() + 500L);
+        usedRockets.add(System.currentTimeMillis() + 1000L);
     }
 
     @Override
