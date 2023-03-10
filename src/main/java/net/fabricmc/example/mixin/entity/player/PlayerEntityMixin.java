@@ -1,5 +1,6 @@
 package net.fabricmc.example.mixin.entity.player;
 
+import kotlinx.coroutines.Job;
 import net.fabricmc.example.entity.LeashPlayer;
 import net.fabricmc.example.entity.RocketSpammer;
 import net.fabricmc.example.mixin.world.WorldAccessor;
@@ -27,7 +28,8 @@ public abstract class PlayerEntityMixin extends LivingEntity implements LeashPla
     public abstract ItemStack eatFood(World world, ItemStack stack);
 
     private final Set<UUID> entities = new HashSet<>();
-    private final Set<Long> usedRockets = new HashSet<>();
+    private int usedRockets;
+    private long lastUsedRocketTimeStamp;
 
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
@@ -63,12 +65,23 @@ public abstract class PlayerEntityMixin extends LivingEntity implements LeashPla
 
     @Override
     public void addRocket() {
-        usedRockets.add(System.currentTimeMillis() + 1000L);
+        usedRockets++;
+        lastUsedRocketTimeStamp = System.currentTimeMillis();
     }
 
     @Override
     public int getUsedRockets() {
-        usedRockets.removeIf(value -> System.currentTimeMillis() > value);
-        return usedRockets.size();
+        return usedRockets;
+    }
+
+    @Override
+    public long getLastUsedRocket() {
+        return lastUsedRocketTimeStamp;
+    }
+
+    @Override
+    public void resetRockets() {
+        usedRockets = 0;
+        lastUsedRocketTimeStamp = 0;
     }
 }
