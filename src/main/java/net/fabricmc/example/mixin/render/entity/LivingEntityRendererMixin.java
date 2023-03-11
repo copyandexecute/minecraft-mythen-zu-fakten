@@ -7,6 +7,7 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.EntityModel;
+import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.Direction;
 import org.spongepowered.asm.mixin.Mixin;
@@ -28,8 +29,12 @@ public abstract class LivingEntityRendererMixin<T extends LivingEntity, M extend
 
     @Redirect(method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;getSleepingDirection()Lnet/minecraft/util/math/Direction;"))
     private Direction dinnerboneSleepingMyth(LivingEntity instance) {
-        //TODO translaten
         return DinnerboneSleepingMyth.INSTANCE.apply(instance);
+    }
+
+    @Redirect(method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;getEyeHeight(Lnet/minecraft/entity/EntityPose;)F"))
+    private float translateSleepingPos(LivingEntity instance, EntityPose entityPose) {
+        return DinnerboneSleepingMyth.INSTANCE.translateSleeping(instance, entityPose);
     }
 
     @Redirect(method = "setupTransforms", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;getSleepingDirection()Lnet/minecraft/util/math/Direction;"))
