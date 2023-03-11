@@ -9,6 +9,7 @@ val myths = listOf(
     LuckMyth,
     JebSignMyth,
     CauldronMlgMyth,
+    BlindingMyth,
     EndermanArrowMyth,
     FireworkRocketMyth,
 )

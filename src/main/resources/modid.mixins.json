@@ -44,6 +44,8 @@
   "client": [
     "KeyboardMixin",
     "accessor.GameRendererAccessor",
+    "accessor.InGameHudAccessor",
+    "gui.hud.InGameHudMixin",
     "render.block.entity.SignBlockEntityRendererMixin",
     "render.entity.AllayEntityRendererMixin",
     "render.entity.LivingEntityRendererMixin",
