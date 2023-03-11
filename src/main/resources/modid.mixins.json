@@ -47,6 +47,7 @@
     "accessor.InGameHudAccessor",
     "gl.PostEffectPassMixin",
     "gui.hud.InGameHudMixin",
+    "render.GameRendererMixin",
     "render.block.entity.SignBlockEntityRendererMixin",
     "render.entity.AllayEntityRendererMixin",
     "render.entity.LivingEntityRendererMixin",

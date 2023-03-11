@@ -2,10 +2,15 @@ package net.fabricmc.example.myth.myths
 
 import kotlinx.coroutines.Job
 import net.fabricmc.example.extensions.toId
+import net.fabricmc.example.extensions.toMcId
+import net.fabricmc.example.mixin.accessor.GameRendererAccessor
+import net.fabricmc.example.mixin.accessor.InGameHudAccessor
 import net.fabricmc.example.myth.Myth
+import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gl.JsonEffectShaderProgram
 import net.minecraft.client.gui.hud.InGameHud
 import net.minecraft.client.util.math.MatrixStack
+import net.minecraft.entity.Entity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.util.hit.HitResult
@@ -16,12 +21,17 @@ import org.jetbrains.annotations.ApiStatus.Internal
 import kotlin.math.abs
 
 object BlindingMyth : Myth("Blinding", true) {
+    private enum class Type {
+        SHADER, OVERLAY
+    }
+
     private val START = Pair(0, -10f)
     private val ZENIT = Pair(6000, -90f)
     private val STEIGUNG = (ZENIT.second - START.second) / (ZENIT.first - START.first)
     private var job: Job? = null
     private val BRIGHTNESS_OVERLAY = "textures/misc/blind.png".toId()
-    private var brightness: Float = 0.5f
+    private val BLINDING_SHADER = "shaders/post/blinding.json".toMcId()
+    private var type = Type.OVERLAY
 
     override fun appendCommand(commandBuilder: LiteralCommandBuilder<ServerCommandSource>) {
         commandBuilder.apply {
@@ -31,16 +41,25 @@ object BlindingMyth : Myth("Blinding", true) {
                     job?.cancel()
                     job = infiniteMcCoroutineTask {
                         server.playerManager.playerList.forEach {
-                            it.sendMessage(it.isLookingAtSun.toString().literal)
+                            val sunnyPlayer = it as SunnyPlayer
+                            if (it.isLookingAtSun) {
+                                sunnyPlayer.setSunBlindness(0.99f.coerceAtMost(sunnyPlayer.getSunBlindness() + 0.09F))
+                            } else {
+                                when (type) {
+                                    Type.SHADER -> sunnyPlayer.setSunBlindness(0.5f.coerceAtLeast(sunnyPlayer.getSunBlindness() - 0.01f))
+                                    Type.OVERLAY -> sunnyPlayer.setSunBlindness(0.0f.coerceAtLeast(sunnyPlayer.getSunBlindness() - 0.01f))
+                                }
+                            }
                         }
                     }
                 }
             }
-            literal("settings") {
-                argument("value") { float ->
+            literal("mode") {
+                argument<String>("mode") { mode ->
+                    suggestList { Type.values().map { it.name } }
                     runs {
-                        brightness = float()
-                        this.source.sendMessage("Brightness wurde auf $brightness gesetzt".literal)
+                        type = Type.valueOf(mode().uppercase())
+                        this.source.sendMessage("Modus: $type".literal)
                     }
                 }
             }
@@ -68,18 +87,32 @@ object BlindingMyth : Myth("Blinding", true) {
         inGameHud: InGameHud,
         matrices: MatrixStack
     ) {
-        //(inGameHud as InGameHudAccessor).invokeRenderOverlay(matrices, BRIGHTNESS, 0.95f)
+        if (isActive && type == Type.OVERLAY) {
+            val sunnyPlayer = MinecraftClient.getInstance().player as? SunnyPlayer? ?: return
+            (inGameHud as InGameHudAccessor).invokeRenderOverlay(
+                matrices,
+                BRIGHTNESS_OVERLAY,
+                sunnyPlayer.getSunBlindness()
+            )
+        }
     }
 
     @Internal
     fun shaderInjection(program: JsonEffectShaderProgram) {
-        program.getUniformByName("Brightness")?.set(brightness)
+        val sunnyPlayer = MinecraftClient.getInstance().player as? SunnyPlayer? ?: return
+        program.getUniformByName("Brightness")?.set(sunnyPlayer.getSunBlindness())
+    }
+
+    fun onCameraEntitySet(entity: Entity?) {
+        if (isActive && MinecraftClient.getInstance().gameRenderer.postProcessor?.name != BLINDING_SHADER.toString() && type == Type.SHADER) {
+            (MinecraftClient.getInstance().gameRenderer as GameRendererAccessor).invokeLoadPostProcessor(BLINDING_SHADER)
+        }
     }
 }
 
 interface SunnyPlayer {
     fun hasStartedLookingAtSun(): Boolean
     fun setHasStartedLookingAtSun(flag: Boolean)
-    fun setSunTicks(amount: Int)
-    fun getSunTicks(): Int
+    fun setSunBlindness(amount: Float)
+    fun getSunBlindness(): Float
 }

@@ -1,4 +1,5 @@
 #version 150
+//Credits to Mojang and https://www.youtube.com/watch?v=zgGl-xLlOcs
 
 uniform sampler2D DiffuseSampler;
 

@@ -35,7 +35,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements LeashPla
     @Shadow
     protected abstract Vec3d adjustMovementForSneaking(Vec3d movement, MovementType type);
 
-    private static final TrackedData<Integer> SUN_TICKS = DataTracker.registerData(PlayerEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    private static final TrackedData<Float> SUN_BRIGHTNESS = DataTracker.registerData(PlayerEntity.class, TrackedDataHandlerRegistry.FLOAT);
     private final Set<UUID> entities = new HashSet<>();
     private int usedRockets;
     private long lastUsedRocketTimeStamp;
@@ -56,17 +56,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements LeashPla
 
     @Inject(method = "initDataTracker", at = @At("TAIL"))
     private void initDataTrackerInjection(CallbackInfo ci) {
-        this.dataTracker.startTracking(SUN_TICKS, 0);
-    }
-
-    @Inject(method = "writeCustomDataToNbt", at = @At("TAIL"))
-    private void writeCustomDataToNbtInjection(NbtCompound nbt, CallbackInfo ci) {
-        nbt.putInt("SunTicks", this.getSunTicks());
-    }
-
-    @Inject(method = "readCustomDataFromNbt", at = @At("TAIL"))
-    private void readCustomDataFromNbtInjection(NbtCompound nbt, CallbackInfo ci) {
-        this.dataTracker.set(SUN_TICKS, nbt.getInt("SunTicks"));
+        this.dataTracker.startTracking(SUN_BRIGHTNESS, 0.0f);
     }
 
     @NotNull
@@ -121,12 +111,12 @@ public abstract class PlayerEntityMixin extends LivingEntity implements LeashPla
     }
 
     @Override
-    public void setSunTicks(int amount) {
-        this.dataTracker.set(SUN_TICKS, amount);
+    public void setSunBlindness(float amount) {
+        this.dataTracker.set(SUN_BRIGHTNESS, amount);
     }
 
     @Override
-    public int getSunTicks() {
-        return this.dataTracker.get(SUN_TICKS);
+    public float getSunBlindness() {
+        return this.dataTracker.get(SUN_BRIGHTNESS);
     }
 }
