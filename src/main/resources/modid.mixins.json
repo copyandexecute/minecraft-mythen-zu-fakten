@@ -36,6 +36,7 @@
     "item.GoatHornItemMixin",
     "item.ItemStackMixin",
     "loot.LootPoolMixin",
+    "loot.condition.RandomChanceWithLootConditionMixin",
     "loot.entry.ChoiceMixin",
     "render.entity.EnderDragonEntityRendererMixin",
     "world.WorldAccessor"
@@ -43,6 +44,8 @@
   "client": [
     "KeyboardMixin",
     "accessor.GameRendererAccessor",
+    "accessor.InGameHudAccessor",
+    "gui.hud.InGameHudMixin",
     "render.block.entity.SignBlockEntityRendererMixin",
     "render.entity.AllayEntityRendererMixin",
     "render.entity.LivingEntityRendererMixin",

@@ -3,10 +3,16 @@ package net.fabricmc.example.mixin.entity.player;
 import net.fabricmc.example.entity.LeashPlayer;
 import net.fabricmc.example.entity.RocketSpammer;
 import net.fabricmc.example.mixin.world.WorldAccessor;
+import net.fabricmc.example.myth.myths.SunnyPlayer;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MovementType;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
@@ -22,12 +28,18 @@ import java.util.Set;
 import java.util.UUID;
 
 @Mixin(PlayerEntity.class)
-public abstract class PlayerEntityMixin extends LivingEntity implements LeashPlayer, RocketSpammer {
+public abstract class PlayerEntityMixin extends LivingEntity implements LeashPlayer, RocketSpammer, SunnyPlayer {
     @Shadow
     public abstract ItemStack eatFood(World world, ItemStack stack);
 
+    @Shadow
+    protected abstract Vec3d adjustMovementForSneaking(Vec3d movement, MovementType type);
+
+    private static final TrackedData<Integer> SUN_TICKS = DataTracker.registerData(PlayerEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private final Set<UUID> entities = new HashSet<>();
-    private final Set<Long> usedRockets = new HashSet<>();
+    private int usedRockets;
+    private long lastUsedRocketTimeStamp;
+    private boolean hasStartedLookingAtSun;
 
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
@@ -40,6 +52,21 @@ public abstract class PlayerEntityMixin extends LivingEntity implements LeashPla
         if (attachedChickens > 0 && !this.onGround && vec3d.y < 0.0) {
             this.setVelocity(vec3d.multiply(1.0, 1.0 / attachedChickens, 1.0));
         }
+    }
+
+    @Inject(method = "initDataTracker", at = @At("TAIL"))
+    private void initDataTrackerInjection(CallbackInfo ci) {
+        this.dataTracker.startTracking(SUN_TICKS, 0);
+    }
+
+    @Inject(method = "writeCustomDataToNbt", at = @At("TAIL"))
+    private void writeCustomDataToNbtInjection(NbtCompound nbt, CallbackInfo ci) {
+        nbt.putInt("SunTicks", this.getSunTicks());
+    }
+
+    @Inject(method = "readCustomDataFromNbt", at = @At("TAIL"))
+    private void readCustomDataFromNbtInjection(NbtCompound nbt, CallbackInfo ci) {
+        this.dataTracker.set(SUN_TICKS, nbt.getInt("SunTicks"));
     }
 
     @NotNull
@@ -63,12 +90,43 @@ public abstract class PlayerEntityMixin extends LivingEntity implements LeashPla
 
     @Override
     public void addRocket() {
-        usedRockets.add(System.currentTimeMillis() + 500L);
+        usedRockets++;
+        lastUsedRocketTimeStamp = System.currentTimeMillis();
     }
 
     @Override
     public int getUsedRockets() {
-        usedRockets.removeIf(value -> System.currentTimeMillis() > value);
-        return usedRockets.size();
+        return usedRockets;
+    }
+
+    @Override
+    public long getLastUsedRocket() {
+        return lastUsedRocketTimeStamp;
+    }
+
+    @Override
+    public void resetRockets() {
+        usedRockets = 0;
+        lastUsedRocketTimeStamp = 0;
+    }
+
+    @Override
+    public boolean hasStartedLookingAtSun() {
+        return hasStartedLookingAtSun;
+    }
+
+    @Override
+    public void setHasStartedLookingAtSun(boolean flag) {
+        this.hasStartedLookingAtSun = flag;
+    }
+
+    @Override
+    public void setSunTicks(int amount) {
+        this.dataTracker.set(SUN_TICKS, amount);
+    }
+
+    @Override
+    public int getSunTicks() {
+        return this.dataTracker.get(SUN_TICKS);
     }
 }
