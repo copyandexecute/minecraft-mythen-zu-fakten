@@ -45,6 +45,7 @@
     "KeyboardMixin",
     "accessor.GameRendererAccessor",
     "accessor.InGameHudAccessor",
+    "gl.PostEffectPassMixin",
     "gui.hud.InGameHudMixin",
     "render.block.entity.SignBlockEntityRendererMixin",
     "render.entity.AllayEntityRendererMixin",
