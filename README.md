@@ -1,5 +1,5 @@
 - [x] Chicken Leash slow falling
-- [ ] Looking in sun = erblinden 
+- [x] Looking in sun = erblinden 
 - [x] Enderman abschießen
 - [x] Cauldron MLG 
 - [ ] Raketen Boosten Schneller und Crossbow Boost
