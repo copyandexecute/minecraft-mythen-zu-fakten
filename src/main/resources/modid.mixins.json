@@ -32,6 +32,7 @@
     "entity.projectile.FireworkRocketEntityMixin",
     "entity.projectile.PersistentProjectileEntityMixin",
     "entity.projectile.TridentEntityMixin",
+    "item.CrossbowItemMixin",
     "item.FireworkRocketItemMixin",
     "item.GoatHornItemMixin",
     "item.ItemStackMixin",
