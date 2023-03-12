@@ -5,9 +5,9 @@ import net.fabricmc.example.entity.RocketSpammer
 import net.fabricmc.example.myth.Myth
 import net.minecraft.entity.Entity
 import net.minecraft.entity.LivingEntity
+import net.minecraft.entity.MovementType
 import net.minecraft.entity.projectile.FireworkRocketEntity
 import net.minecraft.util.math.Vec3d
-import net.minecraft.world.World
 import net.silkmc.silk.core.task.infiniteMcCoroutineTask
 import java.util.*
 
@@ -49,8 +49,24 @@ object FireworkRocketMyth : Myth("Firework") {
             (this as FireworkRocketEntityMyth).setShooter(entity)
         }
     }
+
+    fun FireworkRocketEntity.positionInjection(x: Double, y: Double, z: Double, shooter: LivingEntity?) {
+        if (!isActive or (shooter == null)) {
+            setPosition(x, y, z)
+        }
+    }
+
+    fun FireworkRocketEntity.velocityInjection(vec3d: Vec3d, shooter: LivingEntity?) {
+        if (!isActive or (shooter == null)) {
+            velocity = vec3d
+        } else {
+            val vec3d3 = velocity
+            move(MovementType.SELF, vec3d3)
+            velocity = vec3d3
+        }
+    }
 }
 
 interface FireworkRocketEntityMyth {
-    fun setShooter(livingEntity: LivingEntity?)
+    fun setShooter(livingEntity: LivingEntity)
 }
