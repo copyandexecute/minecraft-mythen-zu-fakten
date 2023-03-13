@@ -1,11 +1,11 @@
-- [x] Chicken Leash slow falling
+- [x] Chicken Leash slow falling X
 - [x] Looking in sun = erblinden 
-- [x] Enderman abschießen
-- [x] Cauldron MLG 
-- [ ] Raketen Boosten Schneller und Crossbow Boost
-- [x] Glück gibt besseren Kistenloot
-- [x] Dinnerbone nametag umdrehen
-- [x] Sponge mit efficieny macht mehr weg
-- [x] Dinnerbone umgedreht im Bett
-- [x] Warden Blind
-- [x] _jeb auf schildern 
+- [x] Enderman abschießen X
+- [x] Cauldron MLG  X
+- [x] Raketen Boosten Schneller und Crossbow Boost X
+- [x] Glück gibt besseren Kistenloot X
+- [x] Dinnerbone nametag umdrehen X
+- [x] Sponge mit efficieny macht mehr weg X
+- [x] Dinnerbone umgedreht im Bett X
+- [x] Warden Blind X
+- [x] _jeb auf schildern X

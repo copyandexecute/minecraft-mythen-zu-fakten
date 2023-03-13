@@ -6,6 +6,7 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.SignBlockEntityRenderer;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.OrderedText;
 import org.joml.Matrix4f;
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,8 +22,8 @@ public abstract class SignBlockEntityRendererMixin implements BlockEntityRendere
         JebSignMyth.INSTANCE.apply(sign, cir);
     }
 
-    @Redirect(method = "renderText", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/font/TextRenderer;draw(Lnet/minecraft/text/OrderedText;FFIZLorg/joml/Matrix4f;Lnet/minecraft/client/render/VertexConsumerProvider;ZII)I"))
-    private int jebMyth(TextRenderer instance, OrderedText text, float x, float y, int color, boolean shadow, Matrix4f matrix, VertexConsumerProvider vertexConsumers, boolean seeThrough, int backgroundColor, int light, SignBlockEntity signBlockEntity) {
-        return JebSignMyth.INSTANCE.apply(signBlockEntity, instance, text, x, y, color, shadow, matrix, vertexConsumers, seeThrough, backgroundColor, light);
+    @Redirect(method = "renderText", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/font/TextRenderer;draw(Lnet/minecraft/text/OrderedText;FFIZLorg/joml/Matrix4f;Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/client/font/TextRenderer$TextLayerType;II)I"))
+    private int jebMyth(TextRenderer instance, OrderedText text, float x, float y, int color, boolean shadow, Matrix4f matrix, VertexConsumerProvider vertexConsumers, TextRenderer.TextLayerType layerType, int backgroundColor, int light, SignBlockEntity signBlockEntity) {
+        return JebSignMyth.INSTANCE.apply(signBlockEntity, instance, text, x, y, color, shadow, matrix, vertexConsumers, layerType, backgroundColor, light);
     }
 }

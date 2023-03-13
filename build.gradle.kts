@@ -22,7 +22,7 @@ dependencies {
 	mappings("net.fabricmc:yarn:${property("yarn_mappings")}:v2")
 	modImplementation("net.fabricmc:fabric-loader:${property("loader_version")}")
 	modImplementation("net.fabricmc:fabric-language-kotlin:${property("fabric_kotlin_version")}")
-	modImplementation("net.fabricmc.fabric-api:fabric-api:${property("fabric_api_version")}")
+	modImplementation("net.fabricmc.fabric-api:fabric-api:${property("fabric_version")}")
 	modImplementation("net.silkmc:silk-core:1.9.5")
 	modImplementation("net.silkmc:silk-commands:1.9.5")
 	modImplementation("net.silkmc:silk-network:1.9.5")

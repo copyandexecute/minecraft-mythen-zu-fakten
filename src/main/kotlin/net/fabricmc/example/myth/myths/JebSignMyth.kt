@@ -3,10 +3,10 @@ package net.fabricmc.example.myth.myths
 import net.fabricmc.example.myth.Myth
 import net.minecraft.block.entity.SignBlockEntity
 import net.minecraft.client.font.TextRenderer
+import net.minecraft.client.font.TextRenderer.TextLayerType
 import net.minecraft.client.render.VertexConsumerProvider
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.Items
-import net.minecraft.server.command.RaidCommand
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.sound.SoundCategory
@@ -100,7 +100,7 @@ object JebSignMyth : Myth("JebSign") {
         shadow: Boolean,
         matrix: Matrix4f,
         vertexConsumers: VertexConsumerProvider,
-        seeThrough: Boolean,
+        layer: TextLayerType,
         backgroundColor: Int,
         light: Int
     ): Int {
@@ -113,7 +113,7 @@ object JebSignMyth : Myth("JebSign") {
                 shadow,
                 matrix,
                 vertexConsumers,
-                seeThrough,
+                layer,
                 backgroundColor,
                 light
             )
@@ -130,7 +130,7 @@ object JebSignMyth : Myth("JebSign") {
                     shadow,
                     matrix,
                     vertexConsumers,
-                    seeThrough,
+                    layer,
                     backgroundColor,
                     light
                 )
@@ -150,7 +150,7 @@ object JebSignMyth : Myth("JebSign") {
                             shadow,
                             matrix,
                             vertexConsumers,
-                            seeThrough,
+                            layer,
                             backgroundColor,
                             light
                         )

@@ -54,7 +54,7 @@ public abstract class TridentEntityMixin extends PersistentProjectileEntity {
         for (double x = start.getX() - radius; x <= start.getX() + radius; x++) {
             for (double y = start.getY() - radius; y <= start.getY() + radius; y++) {
                 for (double z = start.getZ() - radius; z <= start.getZ() + radius; z++) {
-                    blocks.add(new BlockPos(x, y, z));
+                    blocks.add(new BlockPos((int) x, (int) y, (int) z));
                 }
             }
         }

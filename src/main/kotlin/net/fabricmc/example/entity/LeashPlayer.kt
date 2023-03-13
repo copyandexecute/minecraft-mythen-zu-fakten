@@ -28,7 +28,6 @@ object LeashPlayerModifier {
     fun init() {
         leashPacket.receiveOnClient { packet, context ->
             (context.client.player as LeashPlayer).handleUuid(packet.entity, packet.attached)
-            (context.client.player)?.sendMessage(Text.of((context.client.player as LeashPlayer).entities.size.toString()))
         }
     }
     fun handleLeash(player: ServerPlayerEntity, entity: UUID, attached: Boolean) {
